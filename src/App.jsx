@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Button from '@material-ui/core/Button';
 
 import { useQuery } from 'react-query'
 // Components
@@ -10,7 +11,7 @@ import Grid from '@material-ui/core/Grid'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
 import Badge from '@material-ui/core/Badge'
 // Styles
-import { Wrapper, StyledButton } from './App.styles'
+import { Wrapper, StyledButton, Container, Imagem, Card } from './App.styles'
 import api from './api'
 
 const getProducts = async () => { return await api.get('/get-products') }
@@ -85,14 +86,24 @@ const App =  () => {
           <AddShoppingCartIcon fontSize='large'/>
         </Badge>
       </StyledButton>
-      <Grid container spacing={3} style={{marginTop: '50px'}}>
+      <Container >
         {produtos?.map(item => (
-          <Grid item key={item.id} xs={12} sm={3}>
-            <Item item={item} handleAddToCart={handleAddToCart} />
-          </Grid>
+          <Card item key={item.id} >
+            <Imagem src={item.image} alt={item.title} style={{ width: '240px' }} />
+
+
+            <div>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+              <h3>${item.price}</h3>
+            </div>
+            <Button style={{ marginLeft: '18px', background: '#f2f2f2' }} onClick={() => handleAddToCart(item)}>Adicionar ao Carrinho</Button>
+
+            {/* <Item item={item} handleAddToCart={handleAddToCart} /> */}
+          </Card>
 
         ))}
-      </Grid>
+      </Container>
     </Wrapper>
   )
 }

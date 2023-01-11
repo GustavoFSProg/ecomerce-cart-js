@@ -9,7 +9,7 @@ const CartItem = ({ item, addToCart, removeFromCart }) => (
     <div>
       <h3>{item.title}</h3>
       <div className='information'>
-        <p>Price: ${item.price}</p>
+        <p>Preço: ${item.price}</p>
         {/* <p>Total: ${(item.amount * item.price).toFixed(2)}</p> */}
       </div>
       <div className='buttons'>
@@ -21,7 +21,6 @@ const CartItem = ({ item, addToCart, removeFromCart }) => (
         >
           -
         </Button>
-        <p>{item.amount}</p>
         <Button
           size='small'
           disableElevation

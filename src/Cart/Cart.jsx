@@ -7,8 +7,8 @@ const Cart = ({ cartItems, addToCart, removeFromCart }) => {
 
   return (
     <Wrapper>
-      <h2>Your Shopping Cart</h2>
-      {cartItems.length === 0 ? <p>No items in cart.</p> : null}
+      <h2>Seu Carrinho</h2>
+      {cartItems.length === 0 ? <p>Sem items no carrinho.</p> : null}
       {cartItems.map(item => (
         <CartItem
           key={item.id}
