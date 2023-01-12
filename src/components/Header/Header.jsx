@@ -3,7 +3,7 @@ import logo from '../../assets/logo.png'
 import { BsSearch } from 'react-icons/bs'
 import { useState } from 'react'
 import MenuIcon from '@material-ui/icons/Menu'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function Header() {
   const [isButtonClicked, setIsButtonClicked] = useState('none')
@@ -51,23 +51,23 @@ function Header() {
 
       <LinksContainer>
         <div style={{ marginLeft: '40px' }}>
-          {/* <Link
+          <Link
             style={{
               textDecoration: 'none',
               fontFamily: 'Roboto',
               color: 'black'
-            }} to="/"> */}
+            }} to="/">
           HOME
-          {/* </Link> */}
+          </Link>
         </div>
 
         <div style={{ marginLeft: '35px' }}>
-          {/* <Link
+          <Link
             style={{ textDecoration: 'none', fontFamily: 'Roboto', color: 'black  ' }}
-            to="/register"
-          > */}
-          CADASTRO
-          {/* </Link> */}
+            to="/profile"
+          >
+            PROFILE
+          </Link>
         </div>
 
         <div style={{ marginLeft: '35px' }}>

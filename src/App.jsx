@@ -78,7 +78,6 @@ const App =  () => {
       <Header />
 
       <Wrapper>
-        <br />
         <Imagem src="https://picsum.photos/id/1/935/350" alt="imagem" />
       <Drawer anchor='right' open={cartOpen} onClose={() => setCartOpen(false)}>
         <Cart

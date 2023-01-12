@@ -27,6 +27,8 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
 
+  margin-top: 50px;
+
   padding-bottom: 80px;
 
   z-index: 999;
