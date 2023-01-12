@@ -18,6 +18,7 @@ const CartItem = ({ item, addToCart, removeFromCart }) => (
           disableElevation
           variant='contained'
           onClick={() => removeFromCart(item.id)}
+          style={{ marginRight: '5px' }}
         >
           -
         </Button>
