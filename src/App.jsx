@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button'
 import Header from './components/Header/Header'
 
 import { useQuery } from 'react-query'
@@ -15,18 +15,17 @@ import Badge from '@material-ui/core/Badge'
 import { Wrapper, StyledButton, Container, Imagem, Card } from './App.styles'
 import api from './api'
 import { useNavigate } from 'react-router-dom'
+import CART from './CART'
 
-const getProducts = async () => { return await api.get('/get-products') }
+const getProducts = async () => {
+  return await api.get('/get-products')
+}
 
-const App =  () => {
+const App = () => {
   const [cartOpen, setCartOpen] = useState(false)
   const [produtos, setProdutos] = useState([])
   const [cartItems, setCartItems] = useState([])
-  const { isLoading, error } = useQuery(
-    'products',
-    getProducts
-  )
-
+  const { isLoading, error } = useQuery('products', getProducts)
 
   const navigate = useNavigate()
 
@@ -35,27 +34,22 @@ const App =  () => {
     localStorage.setItem('Id', id)
   }
 
-
-
   async function handleProducts() {
     const { data } = await api.get('/get-products')
     setProdutos(data)
     console.log(data)
-   }
+  }
 
-  const getTotalItems = (items) =>
-    items.reduce((ack, item) => ack + item.amount, 0)
+  const getTotalItems = (items) => items.reduce((ack, item) => ack + item.amount, 0)
 
   const handleAddToCart = (clickedItem) => {
-    setCartItems(prev => {
+    setCartItems((prev) => {
       // 1. Is the item already added in the cart?
-      const isItemInCart = prev.find(item => item.id === clickedItem.id)
+      const isItemInCart = prev.find((item) => item.id === clickedItem.id)
 
       if (isItemInCart) {
-        return prev.map(item =>
-          item.id === clickedItem.id
-            ? { ...item, amount: item.amount + 1 }
-            : item
+        return prev.map((item) =>
+          item.id === clickedItem.id ? { ...item, amount: item.amount + 1 } : item
         )
       }
       // First time the item is added
@@ -64,7 +58,7 @@ const App =  () => {
   }
 
   const handleRemoveFromCart = (id) => {
-    setCartItems(prev =>
+    setCartItems((prev) =>
       prev.reduce((ack, item) => {
         if (item.id === id) {
           if (item.amount === 1) return ack
@@ -83,49 +77,43 @@ const App =  () => {
   if (isLoading) return <LinearProgress />
   if (error) return <div>Something went wrong ...</div>
 
-
   return (
     <>
       <Header />
 
       <Wrapper>
         <Imagem src="https://picsum.photos/id/1/935/350" alt="imagem" />
-      <Drawer anchor='right' open={cartOpen} onClose={() => setCartOpen(false)}>
-        <Cart
-          cartItems={cartItems}
-          addToCart={handleAddToCart}
-          removeFromCart={handleRemoveFromCart}
-        />
-      </Drawer>
-      <StyledButton onClick={() => setCartOpen(true)}>
-        <Badge badgeContent={getTotalItems(cartItems)} color='error'>
-          <AddShoppingCartIcon fontSize='large'/>
-        </Badge>
-      </StyledButton>
-      <Container >
-        {produtos?.map(item => (
-          <Card item key={item.id} >
-            <div onClick={() => handleCard(item.id)}>
+        <Drawer anchor="right" open={cartOpen} onClose={() => setCartOpen(false)}>
+          <CART />
+        </Drawer>
+        <StyledButton onClick={() => setCartOpen(true)}>
+          <Badge badgeContent={getTotalItems(cartItems)} color="error">
+            <AddShoppingCartIcon fontSize="large" />
+          </Badge>
+        </StyledButton>
+        <Container>
+          {produtos?.map((item) => (
+            <Card item key={item.id}>
+              <div onClick={() => handleCard(item.id)}>
+                <Imagem src={item.image} alt={item.title} style={{ width: '240px' }} />
+              </div>
 
-            <Imagem src={item.image} alt={item.title} style={{ width: '240px' }} />
-            </div>
-
-
-            <div>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-              <h3>${item.price}</h3>
-            </div>
-            <Button style={{ marginLeft: '18px', background: '#f2f2f2' }}
-              onClick={() => handleAddToCart(item)}>Adicionar ao Carrinho</Button>
-
-          </Card>
-
-        ))}
-      </Container>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+                <h3>${item.price}</h3>
+              </div>
+              <Button
+                style={{ marginLeft: '18px', background: '#f2f2f2' }}
+                onClick={() => handleAddToCart(item)}
+              >
+                Adicionar ao Carrinho
+              </Button>
+            </Card>
+          ))}
+        </Container>
       </Wrapper>
     </>
-
   )
 }
 
