@@ -30,6 +30,12 @@ const App = () => {
   const navigate = useNavigate()
 
   function handleCard(id) {
+    // navigate('/cart')
+    localStorage.setItem('Id', id)
+  }
+
+
+  function handleProfile(id) {
     navigate('/profile')
     localStorage.setItem('Id', id)
   }
@@ -94,7 +100,7 @@ const App = () => {
         <Container>
           {produtos?.map((item) => (
             <Card item key={item.id}>
-              <div onClick={() => handleCard(item.id)}>
+              <div onClick={() => handleProfile(item.id)}>
                 <Imagem src={item.image} alt={item.title} style={{ width: '240px' }} />
               </div>
 
@@ -105,7 +111,7 @@ const App = () => {
               </div>
               <Button
                 style={{ marginLeft: '18px', background: '#f2f2f2' }}
-                onClick={() => handleAddToCart(item)}
+                onClick={() => handleCard(item.id)}
               >
                 Adicionar ao Carrinho
               </Button>
