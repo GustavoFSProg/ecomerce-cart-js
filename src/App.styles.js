@@ -6,7 +6,7 @@ export const Container = styled.div`
   grid-template-columns: repeat(4, 1fr);
   gap: 30px;
   /* width: 10rem; */
-  margin-top: 140px;
+  margin-top: 70px;
 
   @media screen and (max-width: 800px) {
     display: flex;
@@ -79,6 +79,7 @@ export const Card = styled.div`
   }
 `
 export const Imagem = styled.img`
+margin-top: 10px;
   @media screen and (max-width: 800px) {
     width: 50%;
     height: 9rem;
@@ -93,6 +94,6 @@ export const StyledButton = styled(IconButton)`
   position: fixed;
   z-index: 100;
   right: 20px;
-  top: 20px;
+  top: 68px;
   
 `;

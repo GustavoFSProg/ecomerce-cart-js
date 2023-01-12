@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import Button from '@material-ui/core/Button';
+import Header from './components/Header/Header'
 
 import { useQuery } from 'react-query'
 // Components
@@ -73,7 +74,12 @@ const App =  () => {
 
 
   return (
-    <Wrapper>
+    <>
+      <Header />
+
+      <Wrapper>
+        <br />
+        <Imagem src="https://picsum.photos/id/1/935/350" alt="imagem" />
       <Drawer anchor='right' open={cartOpen} onClose={() => setCartOpen(false)}>
         <Cart
           cartItems={cartItems}
@@ -104,7 +110,9 @@ const App =  () => {
 
         ))}
       </Container>
-    </Wrapper>
+      </Wrapper>
+    </>
+
   )
 }
 
