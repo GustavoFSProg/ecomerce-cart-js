@@ -14,6 +14,7 @@ import Badge from '@material-ui/core/Badge'
 // Styles
 import { Wrapper, StyledButton, Container, Imagem, Card } from './App.styles'
 import api from './api'
+import { useNavigate } from 'react-router-dom'
 
 const getProducts = async () => { return await api.get('/get-products') }
 
@@ -25,6 +26,16 @@ const App =  () => {
     'products',
     getProducts
   )
+
+
+  const navigate = useNavigate()
+
+  function handleCard(id) {
+    navigate('/profile')
+    localStorage.setItem('Id', id)
+  }
+
+
 
   async function handleProducts() {
     const { data } = await api.get('/get-products')
@@ -94,7 +105,10 @@ const App =  () => {
       <Container >
         {produtos?.map(item => (
           <Card item key={item.id} >
+            <div onClick={() => handleCard(item.id)}>
+
             <Imagem src={item.image} alt={item.title} style={{ width: '240px' }} />
+            </div>
 
 
             <div>
@@ -102,9 +116,9 @@ const App =  () => {
               <p>{item.description}</p>
               <h3>${item.price}</h3>
             </div>
-            <Button style={{ marginLeft: '18px', background: '#f2f2f2' }} onClick={() => handleAddToCart(item)}>Adicionar ao Carrinho</Button>
+            <Button style={{ marginLeft: '18px', background: '#f2f2f2' }}
+              onClick={() => handleAddToCart(item)}>Adicionar ao Carrinho</Button>
 
-            {/* <Item item={item} handleAddToCart={handleAddToCart} /> */}
           </Card>
 
         ))}
