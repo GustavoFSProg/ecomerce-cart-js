@@ -1,11 +1,29 @@
 import Button from '@material-ui/core/Button';
+import { useState } from 'react'
 // Types
 // Styles
 import { Wrapper } from './CartItem.styles';
 
+// function CounterAdditem(addToCart, item) {
+//   const counter = counter + 1
+// }
+const counter = 10
 
-const CartItem = ({ item, addToCart, removeFromCart }) => (
-  <Wrapper>
+
+function CartItem({ item, addToCart, removeFromCart }) {
+
+  const [counter, setCounter] = useState(0)
+
+  function Counter() {
+    setCounter(counter + 1)
+
+    return counter
+  }
+
+
+  return (
+
+    < Wrapper >
     <div>
       <h3>{item.title}</h3>
       <div className='information'>
@@ -21,19 +39,25 @@ const CartItem = ({ item, addToCart, removeFromCart }) => (
           style={{ marginRight: '5px' }}
         >
           -
-        </Button>
+          </Button>
         <Button
           size='small'
           disableElevation
           variant='contained'
-          onClick={() => addToCart(item)}
+            onClick={() => addToCart(item)}
+            CounterAdditem
         >
+
           +
         </Button>
       </div>
     </div>
     <img src={item.image} alt={item.title} />
-  </Wrapper>
-);
+    </Wrapper >
+
+  )
+
+
+}
 
 export default CartItem;
