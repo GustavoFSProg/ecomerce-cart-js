@@ -16,6 +16,10 @@ import { Wrapper, StyledButton, Container, Imagem, Card } from './App.styles'
 import api from './api'
 import { useNavigate } from 'react-router-dom'
 import CART from './CART'
+import { useContext } from 'react'
+import { CartContext } from './cartContext'
+
+
 
 const getProducts = async () => {
   return await api.get('/get-products')
@@ -27,11 +31,16 @@ const App = () => {
   const [cartItems, setCartItems] = useState([])
   const { isLoading, error } = useQuery('products', getProducts)
 
+  const { productID, setProductID } = useContext(CartContext)
+
   const navigate = useNavigate()
 
   function handleCard(id) {
     // navigate('/cart')
-    localStorage.setItem('Id', id)
+    // localStorage.setItem('Id', id)
+
+    setProductID(id)
+
   }
 
 
@@ -86,6 +95,16 @@ const App = () => {
   return (
     <>
       <Header />
+      {/* {productID.map(item => {
+        return (
+          <>
+            <p>
+              {item[0]}
+            </p>
+          </>
+        )
+      })} */}
+      {productID}
 
       <Wrapper>
         <Imagem src="https://picsum.photos/id/1/935/350" alt="imagem" />

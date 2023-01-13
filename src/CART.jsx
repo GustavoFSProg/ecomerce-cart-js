@@ -1,6 +1,8 @@
+import { useContext } from 'react'
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import api from './api'
+import { CartContext } from './cartContext'
 
 export const Button = styled.button`   
  display: flex;
@@ -23,6 +25,8 @@ function CART() {
   const [product, setProducts] = useState({})
   const [change, setChange] = useState('')
   const [calc, setCalc] = useState(0)
+
+  const { productID, setProductID } = useContext(CartContext)
 
 
 
@@ -81,6 +85,7 @@ function CART() {
     )
   }
 
+
   function Calculate(price, changed) {
 
     setCalc(price * changed)
@@ -105,6 +110,7 @@ function CART() {
           marginTop: '-30px'
         }}
       >
+        {productID}
 
         <div
           style={{
