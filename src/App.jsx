@@ -37,7 +37,7 @@ const App = () => {
 
   function handleCard(id) {
     // navigate('/cart')
-    // localStorage.setItem('Id', id)
+    localStorage.setItem('Id', id)
 
     setProductID(id)
 
@@ -104,7 +104,7 @@ const App = () => {
           </>
         )
       })} */}
-      {productID}
+      {/* {productID} */}
 
       <Wrapper>
         <Imagem src="https://picsum.photos/id/1/935/350" alt="imagem" />
